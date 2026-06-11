@@ -63,6 +63,24 @@
       },
       "disabled": true,
       "autoApprove": []
+    },
+    "drawio-aws": {
+      "command": "npx",
+      "args": ["-y", "https://github.com/aws-samples/sample-drawio-mcp/releases/latest/download/drawio-mcp-server-latest.tgz", "--no-cache"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "drawio-official": {
+      "command": "npx",
+      "args": ["-y", "@drawio/mcp"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "aws-pricing-calculator": {
+      "command": "npx",
+      "args": ["-y", "sample-aws-pricing-calculator-mcp@latest"],
+      "disabled": false,
+      "autoApprove": []
     }
   }
 }

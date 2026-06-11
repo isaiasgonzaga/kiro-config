@@ -1,5 +1,5 @@
 ﻿# Arquivos com secrets e tokens - NAO versionar
 settings/mcp.json
 
-# Versionar apenas o template sem secrets
-# (use mcp.template.json no lugar)
+# Pasta interna do Kiro (hooks, etc sao locais)
+.kiro/

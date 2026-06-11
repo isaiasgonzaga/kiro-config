@@ -14,5 +14,10 @@ Sempre responda em português brasileiro, independentemente do idioma usado pelo
 # Sobre o Usuário
 
 - Nome: Isaias Santos
+- Email Git: isaiasgonzaga07@gmail.com
 - Sistema operacional: Windows
 - Shell: PowerShell / CMD
+- Repo de configuração do Kiro: https://github.com/isaiasgonzaga/kiro-config.git (privado)
+  - Branch: master
+  - Contém: .gitignore, steering/, settings/mcp.template.json
+  - Para sincronizar em nova máquina: clonar em `C:\Users\<usuario>\.kiro\`, copiar mcp.template.json para mcp.json e preencher as API keys

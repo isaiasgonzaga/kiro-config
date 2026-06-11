@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 cd /d "C:\Users\Isaias Santos\.kiro"
 git add .
 git diff --cached --quiet

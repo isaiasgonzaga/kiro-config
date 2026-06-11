@@ -1,0 +1,1 @@
+Set-Location 'C:\Users\Isaias Santos\.kiro'; git add .; $diff = git diff --cached --quiet; if ($LASTEXITCODE -ne 0) { git commit -m 'sync: atualizacao automatica de configs'; git push }

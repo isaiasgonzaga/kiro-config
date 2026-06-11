@@ -63,3 +63,11 @@ inclusion: always
 - Grupos sem espacos desperdicados
 - Fundo levemente colorido nas subnets para diferenciar Public (verde claro) e Private (azul claro)
 - Grupos tematicos externos com borda tracejada fina sem fill
+## MCP a Utilizar
+- Para criar diagramas: usar APENAS `mcp_drawio_official_open_drawio_xml` (gerar XML completo) e `mcp_drawio_aws_save_diagram` (salvar arquivo)
+- NAO usar mcp_drawio_aws_insert_vertex, mcp_drawio_aws_insert_library_shape, mcp_drawio_aws_list_shapes, mcp_drawio_aws_search_shapes, mcp_drawio_aws_list_categories ou qualquer outro mcp_drawio_aws_* para construir o diagrama peça por peça
+- Os shapes dos icones AWS devem ser escritos diretamente no XML usando os styles conhecidos
+
+## Icones AWS — Nao Alterar
+- Nunca trocar os icones AWS solicitados pelo usuario — se o usuario pediu EC2, usar EC2; se pediu RDS, usar RDS
+- Apenas corrigir icones que estao visivelmente quebrados (ex: EFS usa elastic_file_system)

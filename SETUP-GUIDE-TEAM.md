@@ -1,11 +1,11 @@
-﻿# Guia de Setup do Kiro — Membros do Time
+# Guia de Setup do Kiro — Membros do Time
 
-Este guia configura o Kiro na sua maquina com as configuracoes padrao do time.
-Voce nao precisa (e nao deve) alterar o repositorio — apenas recebe as atualizacoes do admin.
+Este guia configura o Kiro na sua maquina com as configurações padrão do time.
+Voce nao precisa (e nao deve) alterar o repositório — apenas recebe as atualizações do admin.
 
 ---
 
-## Pre-requisitos
+## Pré-requisitos
 
 - [ ] Kiro instalado
 - [ ] Git instalado: https://git-scm.com/download/win
@@ -13,15 +13,15 @@ Voce nao precisa (e nao deve) alterar o repositorio — apenas recebe as atualiz
 
 ---
 
-## PASSO 1 — Clonar as configuracoes do time
+## PASSO 1 — Clonar as configurações do time
 
 Abra o terminal e execute:
 
 ```bash
-git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuario>\.kiro"
+git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuário>\.kiro"
 ```
 
-> Substitua `<seu-usuario>` pelo seu nome de usuario do Windows.
+> Substitua `<seu-usuário>` pelo seu nome de usuário do Windows.
 > Exemplo: `C:\Users\joao.silva\.kiro`
 
 ---
@@ -29,12 +29,12 @@ git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuari
 ## PASSO 2 — Configurar o mcp.json
 
 ```bash
-copy "C:\Users\<seu-usuario>\.kiro\settings\mcp.template.json" "C:\Users\<seu-usuario>\.kiro\settings\mcp.json"
+copy "C:\Users\<seu-usuário>\.kiro\settings\mcp.template.json" "C:\Users\<seu-usuário>\.kiro\settings\mcp.json"
 ```
 
-O arquivo `mcp.json` esta no `.gitignore` — suas credenciais ficam **apenas na sua maquina**, nao vao para o repositorio.
+O arquivo `mcp.json` esta no `.gitignore` — suas credenciais ficam **apenas na sua maquina**, nao vao para o repositório.
 
-Abra o `mcp.json` e preencha suas chaves nos campos necessarios (os MCPs de Draw.io e AWS Calculator nao precisam de chave — ja funcionam direto).
+Abra o `mcp.json` e preencha suas chaves nos campos necessários (os MCPs de Draw.io e AWS Calculator nao precisam de chave — ja funcionam direto).
 
 ---
 
@@ -52,11 +52,11 @@ git config --global user.name "Seu Nome"
 Para garantir que voce nao faca push por engano, execute:
 
 ```bash
-cd "C:\Users\<seu-usuario>\.kiro"
+cd "C:\Users\<seu-usuário>\.kiro"
 git remote set-url --push origin no-push
 ```
 
-> Isso faz com que qualquer tentativa de `git push` falhe com "no-push", protegendo o repositorio do time.
+> Isso faz com que qualquer tentativa de `git push` falhe com "no-push", protegendo o repositório do time.
 
 ---
 
@@ -68,23 +68,23 @@ Crie a pasta e o script:
 mkdir C:\kiro-sync
 ```
 
-Crie o arquivo `C:\kiro-sync\sync.bat` com o seguinte conteudo:
+Crie o arquivo `C:\kiro-sync\sync.bat` com o seguinte conteúdo:
 
 ```bat
 @echo off
-cd /d "C:\Users\<seu-usuario>\.kiro"
+cd /d "C:\Users\<seu-usuário>\.kiro"
 git pull --rebase origin master
 ```
 
-> Este script apenas **recebe** atualizacoes do admin. Nao faz commit nem push.
+> Este script apenas **recebe** atualizações do admin. Nao faz commit nem push.
 
 ---
 
-## PASSO 6 — Criar o hook de atualizacao automatica
+## PASSO 6 — Criar o hook de atualização automática
 
 Crie a pasta se nao existir:
 ```bash
-mkdir "C:\Users\<seu-usuario>\.kiro\.kiro\hooks"
+mkdir "C:\Users\<seu-usuário>\.kiro\.kiro\hooks"
 ```
 
 Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
@@ -93,7 +93,7 @@ Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
 {
   "enabled": true,
   "name": "Sync Kiro Config",
-  "description": "Recebe atualizacoes de configuracao do time automaticamente",
+  "description": "Recebe atualizações de configuração do time automaticamente",
   "version": "1",
   "when": {
     "type": "agentStop"
@@ -110,13 +110,13 @@ Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
 
 ## PASSO 7 — Reiniciar o Kiro
 
-Feche e abra o Kiro. As configuracoes do time serao carregadas automaticamente.
+Feche e abra o Kiro. As configurações do time serão carregadas automaticamente.
 
 ---
 
-## Como receber atualizacoes do admin
+## Como receber atualizações do admin
 
-Sempre que o admin atualizar as configuracoes, seu Kiro vai sincronizar automaticamente ao final de cada execucao do agente.
+Sempre que o admin atualizar as configurações, seu Kiro vai sincronizar automaticamente ao final de cada execução do agente.
 
 Para atualizar manualmente a qualquer momento:
 
@@ -126,7 +126,7 @@ cmd /c "C:\kiro-sync\sync.bat"
 
 ---
 
-## MCPs disponiveis apos o setup
+## MCPs disponíveis apos o setup
 
 | MCP | Status | O que faz |
 |-----|--------|-----------|
@@ -137,11 +137,11 @@ cmd /c "C:\kiro-sync\sync.bat"
 
 ---
 
-## Resolucao de problemas
+## Resolução de problemas
 
 **Erro ao fazer pull: "divergent branches"**
 ```bash
-cd "C:\Users\<seu-usuario>\.kiro"
+cd "C:\Users\<seu-usuário>\.kiro"
 git fetch origin
 git reset --hard origin/master
 ```
@@ -150,5 +150,5 @@ git reset --hard origin/master
 - Verifique se Node.js esta instalado: `node -v`
 - Reconecte pelo painel do Kiro (View > MCP Servers)
 
-**Quero sugerir uma mudanca nas configuracoes**
-- Fale com o admin (Isaias Santos) — ele faz a alteracao e voce recebe automaticamente no proximo sync.
+**Quero sugerir uma mudança nas configurações**
+- Fale com o admin (Isaias Santos) — ele faz a alteração e voce recebe automaticamente no proximo sync.

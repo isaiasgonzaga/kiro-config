@@ -5,11 +5,64 @@ Voce nao precisa (e nao deve) alterar o repositório — apenas recebe as atuali
 
 ---
 
-## Pré-requisitos
+## Pré-requisitos — Antes de começar
 
-- [ ] Kiro instalado
-- [ ] Git instalado: https://git-scm.com/download/win
-- [ ] Node.js instalado: https://nodejs.org
+Garanta que os itens abaixo estão instalados e funcionando antes de executar qualquer passo.
+
+### 1. Kiro IDE
+Baixe e instale o Kiro em: https://kiro.dev
+
+### 2. Git
+Necessário para clonar o repositório do time e receber atualizações automáticas.
+
+- Download: https://git-scm.com/download/win
+- Após instalar, verifique: `git --version`
+- Configure sua identidade (obrigatório para o git funcionar):
+  ```bash
+  git config --global user.email "seu-email@empresa.com"
+  git config --global user.name "Seu Nome"
+  ```
+- Configure o armazenamento de credenciais para não precisar digitar senha toda vez:
+  ```bash
+  git config --global credential.helper manager
+  ```
+
+> Se `git` não for reconhecido no terminal após a instalação, reinicie o terminal ou o Windows.
+
+### 3. Node.js
+Necessário para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing-calculator).
+
+- Download (versão LTS): https://nodejs.org
+- Após instalar, verifique:
+  ```bash
+  node -v
+  npm -v
+  ```
+
+### 4. Python + uv (para MCPs com uvx)
+Necessário se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws-docs, etc.
+
+- Download Python: https://www.python.org/downloads/
+- Após instalar Python, instale o uv:
+  ```bash
+  pip install uv
+  ```
+- Verifique:
+  ```bash
+  uvx --version
+  ```
+
+### Checklist rápido
+
+| Item | Comando de verificação | Status esperado |
+|------|------------------------|-----------------|
+| Git | `git --version` | `git version 2.x.x` |
+| Node.js | `node -v` | `v20.x.x` ou superior |
+| npm | `npm -v` | `10.x.x` ou superior |
+| Python | `python --version` | `3.10` ou superior |
+| uv/uvx | `uvx --version` | `uv x.x.x` |
+
+> Todos os comandos acima devem funcionar em um terminal novo antes de prosseguir.
 
 ---
 
@@ -38,16 +91,7 @@ Abra o `mcp.json` e preencha suas chaves nos campos necessários (os MCPs de Dra
 
 ---
 
-## PASSO 3 — Configurar identidade Git (somente leitura)
-
-```bash
-git config --global user.email "seu-email@empresa.com"
-git config --global user.name "Seu Nome"
-```
-
----
-
-## PASSO 4 — Bloquear push acidental
+## PASSO 3 — Bloquear push acidental
 
 Para garantir que voce nao faca push por engano, execute:
 
@@ -60,7 +104,7 @@ git remote set-url --push origin no-push
 
 ---
 
-## PASSO 5 — Criar o script de sync (apenas pull)
+## PASSO 4 — Criar o script de sync (apenas pull)
 
 Crie a pasta e o script:
 
@@ -80,7 +124,7 @@ git pull --rebase origin master
 
 ---
 
-## PASSO 6 — Criar o hook de atualização automática
+## PASSO 5 — Criar o hook de atualização automática
 
 Crie a pasta se nao existir:
 ```bash
@@ -108,7 +152,7 @@ Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
 
 ---
 
-## PASSO 7 — Reiniciar o Kiro
+## PASSO 6 — Reiniciar o Kiro
 
 Feche e abra o Kiro. As configurações do time serão carregadas automaticamente.
 

@@ -1,0 +1,15 @@
+# Secrets e tokens - NAO versionar
+settings/mcp.json
+
+# Pasta interna do Kiro (local apenas)
+.kiro/
+
+# Logs e sessoes (locais, nao versionar)
+logs/
+sessions/
+skills/
+powers/registries/
+
+# Arquivos de estado interno
+.trust-migration.json
+argv.json

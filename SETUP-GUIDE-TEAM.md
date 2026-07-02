@@ -39,18 +39,22 @@ Necessario para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing
   npm -v
   ```
 
-### 4. Python + uv (para MCPs com uvx)
+### 4. uv (para MCPs com uvx)
 Necessario se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws-docs, etc.
 
-- Download Python: https://www.python.org/downloads/
-- Apos instalar Python, instale o uv:
+Instale via PowerShell (nao precisa de Python):
+```powershell
+powershell -ExecutionPolicy Bypass -Command "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+O instalador coloca o `uvx.exe` em `C:\Users\<seu-usuario>\.local\bin\`.
+
+- Verifique (em um terminal novo):
   ```bash
-  pip install uv
+  C:\Users\<seu-usuario>\.local\bin\uvx.exe --version
   ```
-- Verifique:
-  ```bash
-  uvx --version
-  ```
+
+> Use sempre o **caminho completo** do uvx no mcp.json.
 
 ### Checklist rapido
 
@@ -60,7 +64,7 @@ Necessario se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws-
 | Node.js | `node -v` | `v20.x.x` ou superior |
 | npm | `npm -v` | `10.x.x` ou superior |
 | Python | `python --version` | `3.10` ou superior |
-| uv/uvx | `uvx --version` | `uv x.x.x` |
+| uv/uvx | `C:\Users\<seu-usuario>\.local\bin\uvx.exe --version` | `uv x.x.x` |
 
 > Todos os comandos acima devem funcionar em um terminal novo antes de prosseguir.
 
@@ -119,11 +123,16 @@ O que voce deve encontrar:
 
 ## PASSO 3 — Configurar o mcp.json
 
-Abra o arquivo `C:\Users\<seu-usuario>\.kiro\settings\mcp.json` e preencha suas chaves nos campos necessarios.
+Abra o arquivo `C:\Users\<seu-usuario>\.kiro\settings\mcp.json` e substitua os placeholders:
+
+- `<seu-usuario>` em todos os caminhos de `uvx.exe` -> seu nome de usuario do Windows (ex: `joao.silva`)
+- Preencha as API keys dos MCPs que quiser ativar
 
 Os MCPs de Draw.io e AWS Calculator **nao precisam de chave** — ja funcionam direto apos o setup.
 
 O arquivo `mcp.json` esta no `.gitignore` — suas credenciais ficam **apenas na sua maquina**, nao vao para o repositorio.
+
+> O mcp.json ja usa caminhos completos para `npx.cmd` e `uvx.exe`. Isso e necessario porque o Kiro pode nao enxergar o PATH do sistema corretamente no Windows.
 
 ---
 
@@ -250,8 +259,10 @@ cd "C:\Users\<seu-usuario>\.kiro"
 "C:\Program Files\Git\bin\git.exe" reset --hard origin/master
 ```
 
-**MCPs nao aparecem**
-- Verifique se Node.js esta instalado: `node -v`
+**MCPs nao aparecem / erro ao iniciar**
+- Confirme que Node.js esta em `C:\Program Files\nodejs\`: `dir "C:\Program Files\nodejs\node.exe"`
+- Confirme que uvx esta instalado: `dir "C:\Users\<seu-usuario>\.local\bin\uvx.exe"`
+- O mcp.json usa caminhos completos — confirme que os caminhos batem com sua instalacao
 - Reconecte pelo painel do Kiro (View > MCP Servers)
 
 **git nao reconhecido no sync.bat**

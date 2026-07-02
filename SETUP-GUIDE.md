@@ -38,18 +38,22 @@ Necessario para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing
   npm -v
   ```
 
-### 4. Python + uv (para MCPs com uvx)
+### 4. uv (para MCPs com uvx)
 Necessario para os MCPs que usam `uvx` (filesystem, git, fetch, brave-search, aws-docs, etc.).
 
-- Download Python: https://www.python.org/downloads/
-- Apos instalar Python, instale o uv:
+Instale via PowerShell (nao precisa de Python):
+```powershell
+powershell -ExecutionPolicy Bypass -Command "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+O instalador coloca o `uvx.exe` em `C:\Users\<seu-usuario>\.local\bin\`.
+
+- Verifique (em um terminal novo):
   ```bash
-  pip install uv
+  C:\Users\<seu-usuario>\.local\bin\uvx.exe --version
   ```
-- Verifique:
-  ```bash
-  uvx --version
-  ```
+
+> Use sempre o **caminho completo** do uvx no mcp.json — o Kiro pode nao enxergar o PATH do usuario.
 
 ### 5. Conta GitHub com Personal Access Token
 Necessario para clonar o repositorio (privado) e para o sync automatico via push.
@@ -66,7 +70,7 @@ Necessario para clonar o repositorio (privado) e para o sync automatico via push
 | Node.js | `node -v` | `v20.x.x` ou superior |
 | npm | `npm -v` | `10.x.x` ou superior |
 | Python | `python --version` | `3.10` ou superior |
-| uv/uvx | `uvx --version` | `uv x.x.x` |
+| uv/uvx | `C:\Users\<seu-usuario>\.local\bin\uvx.exe --version` | `uv x.x.x` |
 
 > Todos os comandos acima devem funcionar em um terminal novo antes de prosseguir.
 
@@ -120,12 +124,15 @@ O que cada arquivo contem:
 
 Abra o arquivo `C:\Users\<seu-usuario>\.kiro\settings\mcp.json` e substitua os placeholders:
 
+- `<seu-usuario>` em todos os caminhos de `uvx.exe` -> seu nome de usuario do Windows (ex: `joao.silva`)
 - `GITHUB_TOKEN` -> seu Personal Access Token do GitHub
 - `BRAVE_API_KEY` -> sua API key do Brave Search
 - `DATABASE_URL` -> sua string de conexao do banco
 - `SLACK_BOT_TOKEN` / `SLACK_TEAM_ID` -> credenciais do Slack
 
 Para habilitar um servidor, mude `"disabled": true` para `"disabled": false`.
+
+> O mcp.json ja usa caminhos completos para `npx.cmd` e `uvx.exe` para garantir que os MCPs funcionem mesmo quando o PATH do sistema nao inclui nodejs ou uv.
 
 ---
 
@@ -286,9 +293,10 @@ Feche e abra o Kiro para que:
 
 ## Resolucao de problemas
 
-**MCPs nao aparecem no Kiro**
-- Verifique se Node.js esta instalado: `node -v`
-- Verifique se uvx esta instalado: `uvx --version` (se nao, instale: `pip install uv`)
+**MCPs nao aparecem no Kiro / erro ao iniciar**
+- Confirme que Node.js esta instalado em `C:\Program Files\nodejs\`: `dir "C:\Program Files\nodejs\node.exe"`
+- Confirme que uvx esta instalado: `dir "C:\Users\<seu-usuario>\.local\bin\uvx.exe"`
+- O mcp.json usa caminhos completos — confirme que os caminhos batem com sua instalacao
 - Reconecte os MCPs pelo painel do Kiro (View > MCP Servers)
 
 **Hook de sync nao funciona**

@@ -1,25 +1,25 @@
 ﻿{
   "mcpServers": {
     "filesystem": {
-      "command": "uvx",
-      "args": ["mcp-server-filesystem@latest", "C:/Users/Isaias Santos"],
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
+      "args": ["mcp-server-filesystem@latest", "C:/Users/<seu-usuario>"],
       "disabled": true,
       "autoApprove": []
     },
     "git": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-git@latest"],
       "disabled": true,
       "autoApprove": []
     },
     "fetch": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-fetch@latest"],
       "disabled": true,
       "autoApprove": []
     },
     "brave-search": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-brave-search@latest"],
       "env": {
         "BRAVE_API_KEY": "BRAVE_API_KEY"
@@ -28,7 +28,7 @@
       "autoApprove": []
     },
     "aws-docs": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["awslabs.aws-documentation-mcp-server@latest"],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
@@ -37,7 +37,7 @@
       "autoApprove": []
     },
     "postgres": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-postgres@latest"],
       "env": {
         "DATABASE_URL": "DATABASE_URL"
@@ -46,7 +46,7 @@
       "autoApprove": []
     },
     "github": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-github@latest"],
       "env": {
         "GITHUB_TOKEN": "GITHUB_TOKEN"
@@ -55,7 +55,7 @@
       "autoApprove": []
     },
     "slack": {
-      "command": "uvx",
+      "command": "C:\\Users\\<seu-usuario>\\.local\\bin\\uvx.exe",
       "args": ["mcp-server-slack@latest"],
       "env": {
         "SLACK_BOT_TOKEN": "SLACK_BOT_TOKEN",
@@ -65,20 +65,29 @@
       "autoApprove": []
     },
     "drawio-aws": {
-      "command": "npx",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd",
       "args": ["-y", "https://github.com/aws-samples/sample-drawio-mcp/releases/latest/download/drawio-mcp-server-latest.tgz", "--no-cache"],
+      "env": {
+        "PATH": "C:\\Program Files\\nodejs;C:\\Windows\\system32;C:\\Windows"
+      },
       "disabled": false,
       "autoApprove": []
     },
     "drawio-official": {
-      "command": "npx",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd",
       "args": ["-y", "@drawio/mcp"],
+      "env": {
+        "PATH": "C:\\Program Files\\nodejs;C:\\Windows\\system32;C:\\Windows"
+      },
       "disabled": false,
       "autoApprove": []
     },
     "aws-pricing-calculator": {
-      "command": "npx",
+      "command": "C:\\Program Files\\nodejs\\npx.cmd",
       "args": ["-y", "sample-aws-pricing-calculator-mcp@latest"],
+      "env": {
+        "PATH": "C:\\Program Files\\nodejs;C:\\Windows\\system32;C:\\Windows"
+      },
       "disabled": false,
       "autoApprove": []
     }

@@ -4,6 +4,74 @@ Copie e cole este guia em qualquer sessao do Kiro para replicar toda a configura
 
 ---
 
+## PRE-REQUISITOS — Antes de comecar
+
+Garanta que os itens abaixo estao instalados e funcionando antes de executar qualquer passo.
+
+### 1. Kiro IDE
+Baixe e instale o Kiro em: https://kiro.dev
+
+### 2. Git
+Necessario para clonar o repositorio de configuracao e para o sync automatico.
+
+- Download: https://git-scm.com/download/win
+- Apos instalar, verifique: `git --version`
+- Configure sua identidade (obrigatorio para commits):
+  ```bash
+  git config --global user.email "seu-email@exemplo.com"
+  git config --global user.name "Seu Nome"
+  ```
+- Configure o armazenamento de credenciais para nao precisar digitar senha toda vez:
+  ```bash
+  git config --global credential.helper manager
+  ```
+
+> Se `git` nao for reconhecido no terminal apos a instalacao, reinicie o terminal ou o Windows.
+
+### 3. Node.js
+Necessario para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing-calculator).
+
+- Download (versao LTS): https://nodejs.org
+- Apos instalar, verifique:
+  ```bash
+  node -v
+  npm -v
+  ```
+
+### 4. Python + uv (para MCPs com uvx)
+Necessario para os MCPs que usam `uvx` (filesystem, git, fetch, brave-search, aws-docs, etc.).
+
+- Download Python: https://www.python.org/downloads/
+- Apos instalar Python, instale o uv:
+  ```bash
+  pip install uv
+  ```
+- Verifique:
+  ```bash
+  uvx --version
+  ```
+
+### 5. Conta GitHub com Personal Access Token
+Necessario para clonar o repositorio (se privado) e para o sync automatico via push.
+
+- Crie um token em: https://github.com/settings/tokens/new
+- Escopos necessarios: `repo` (acesso completo a repositorios)
+- Guarde o token — ele sera usado como senha ao clonar e no push automatico
+
+### Checklist rapido
+
+| Item | Comando de verificacao | Status esperado |
+|------|------------------------|-----------------|
+| Git | `git --version` | `git version 2.x.x` |
+| Node.js | `node -v` | `v20.x.x` ou superior |
+| npm | `npm -v` | `10.x.x` ou superior |
+| Python | `python --version` | `3.10` ou superior |
+| uv/uvx | `uvx --version` | `uv x.x.x` |
+
+> Todos os comandos acima devem funcionar em um terminal novo antes de prosseguir.
+
+---
+
 ## PASSO 1 — Clonar as configuracoes globais
 
 ```bash
@@ -59,22 +127,13 @@ Os seguintes MCPs estao disponiveis mas **desativados** (precisam de API key):
 
 ## PASSO 4 — Configurar sync automatico com Git
 
-### 4.1 — Instalar Git
-https://git-scm.com/download/win
-
-### 4.2 — Configurar identidade
-```bash
-git config --global user.email "seu-email@exemplo.com"
-git config --global user.name "Seu Nome"
-```
-
-### 4.3 — Criar o script de sync sem espacos no caminho
+### 4.1 — Criar o script de sync sem espacos no caminho
 ```bash
 mkdir C:\kiro-sync
 copy "C:\Users\<seu-usuario>\.kiro\sync.bat" C:\kiro-sync\sync.bat
 ```
 
-### 4.4 — Criar o hook de sync automatico
+### 4.2 — Criar o hook de sync automatico
 
 Crie o arquivo:
 ```

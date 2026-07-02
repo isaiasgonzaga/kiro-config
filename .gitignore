@@ -1,5 +1,0 @@
-﻿# Arquivos com secrets e tokens - NAO versionar
-settings/mcp.json
-
-# Pasta interna do Kiro (hooks, etc sao locais)
-.kiro/

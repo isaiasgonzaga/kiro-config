@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Sync Kiro Config",
+      "trigger": "Stop",
+      "description": "Faz commit e push automático após cada execução do agente",
+      "action": {
+        "type": "command",
+        "command": "cmd /c \"C:\\kiro-sync\\sync.bat\"",
+        "timeout": 30
+      }
+    }
+  ]
+}

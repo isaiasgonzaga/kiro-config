@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataModelVersion": 1,
+  "id": "sess_e5f3da19-abeb-419d-b006-7cd1fc924982",
+  "title": "Setup Kiro Config",
+  "agentMode": "vibe",
+  "workspacePaths": [
+    "c:\\Users\\isaias.santos\\.kiro"
+  ],
+  "createdAt": "2026-07-02T19:26:36.060Z",
+  "lastModifiedAt": "2026-07-02T20:40:13.153Z",
+  "semanticReviewEnabled": true,
+  "ftaEnabled": false,
+  "specPlanEnabled": false,
+  "specWorkflow": "quick",
+  "specSkipClarificationEnabled": true,
+  "description": "Setup completo do Kiro finalizado. Todos os 5 passos concluídos com sucesso.",
+  "status": "in_progress"
+}

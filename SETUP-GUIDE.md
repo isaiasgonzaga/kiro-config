@@ -82,7 +82,39 @@ git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuari
 
 ---
 
-## PASSO 2 — Configurar o mcp.json com suas API keys
+## PASSO 2 — Copiar configuracoes do repositorio para o Kiro
+
+Apos clonar, copie todas as pastas e arquivos de configuracao do repositorio para o diretorio do Kiro:
+
+```bash
+:: Steering files (regras e comportamentos do agente)
+xcopy /E /I /Y "C:\Users\<seu-usuario>\.kiro\steering" "C:\Users\<seu-usuario>\.kiro\steering"
+
+:: Extensions (extensoes recomendadas)
+copy "C:\Users\<seu-usuario>\.kiro\extensions\extensions.json" "C:\Users\<seu-usuario>\.kiro\extensions\extensions.json"
+
+:: Powers (poderes instalados)
+copy "C:\Users\<seu-usuario>\.kiro\powers\installed.json" "C:\Users\<seu-usuario>\.kiro\powers\installed.json"
+
+:: argv.json (configuracoes de inicializacao)
+copy "C:\Users\<seu-usuario>\.kiro\argv.json" "C:\Users\<seu-usuario>\.kiro\argv.json"
+```
+
+> Como o clone ja vai direto para `C:\Users\<seu-usuario>\.kiro`, esses arquivos ja estarao no lugar certo automaticamente. Este passo so e necessario se voce clonou em outro diretorio.
+
+O que cada pasta contem:
+
+| Pasta / Arquivo | Conteudo |
+|-----------------|----------|
+| `steering/` | Regras de comportamento do agente (idioma, diagramas AWS, calculadora) |
+| `extensions/extensions.json` | Lista de extensoes recomendadas do time |
+| `powers/installed.json` | Powers instalados e configurados |
+| `settings/mcp.template.json` | Template dos MCPs — base para o seu `mcp.json` |
+| `argv.json` | Argumentos de inicializacao do Kiro |
+
+---
+
+## PASSO 3 — Configurar o mcp.json com suas API keys
 
 ```bash
 copy "C:\Users\<seu-usuario>\.kiro\settings\mcp.template.json" "C:\Users\<seu-usuario>\.kiro\settings\mcp.json"
@@ -98,7 +130,7 @@ Para habilitar um servidor, mude `"disabled": true` para `"disabled": false`.
 
 ---
 
-## PASSO 3 — MCPs ja configurados e ativos
+## PASSO 4 — MCPs ja configurados e ativos
 
 Os seguintes MCPs ja estao ativos (`"disabled": false`) no template:
 
@@ -125,15 +157,15 @@ Os seguintes MCPs estao disponiveis mas **desativados** (precisam de API key):
 
 ---
 
-## PASSO 4 — Configurar sync automatico com Git
+## PASSO 5 — Configurar sync automatico com Git
 
-### 4.1 — Criar o script de sync sem espacos no caminho
+### 5.1 — Criar o script de sync sem espacos no caminho
 ```bash
 mkdir C:\kiro-sync
 copy "C:\Users\<seu-usuario>\.kiro\sync.bat" C:\kiro-sync\sync.bat
 ```
 
-### 4.2 — Criar o hook de sync automatico
+### 5.2 — Criar o hook de sync automatico
 
 Crie o arquivo:
 ```
@@ -163,7 +195,7 @@ Com o conteudo:
 
 ---
 
-## PASSO 5 — Apontar para seu proprio repositorio (opcional)
+## PASSO 6 — Apontar para seu proprio repositorio (opcional)
 
 Se quiser usar seu proprio repo ao inves do original:
 
@@ -175,7 +207,7 @@ git push -u origin master
 
 ---
 
-## PASSO 6 — Reiniciar o Kiro
+## PASSO 7 — Reiniciar o Kiro
 
 Feche e abra o Kiro para que:
 - As steering files sejam carregadas

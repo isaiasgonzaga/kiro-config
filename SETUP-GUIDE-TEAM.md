@@ -79,7 +79,38 @@ git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuár
 
 ---
 
-## PASSO 2 — Configurar o mcp.json
+## PASSO 2 — Verificar os arquivos recebidos do repositório
+
+Após clonar, confirme que os seguintes arquivos e pastas estão presentes no seu `.kiro`:
+
+```bash
+dir "C:\Users\<seu-usuário>\.kiro\steering"
+dir "C:\Users\<seu-usuário>\.kiro\extensions"
+dir "C:\Users\<seu-usuário>\.kiro\powers"
+dir "C:\Users\<seu-usuário>\.kiro\settings"
+```
+
+O que você deve encontrar:
+
+| Pasta / Arquivo | O que faz |
+|-----------------|-----------|
+| `steering/language.md` | Kiro responde em português brasileiro |
+| `steering/aws-calculator.md` | Fluxo guiado para estimativas AWS |
+| `steering/aws-diagrams.md` | Padrão de diagramas AWS do time |
+| `extensions/extensions.json` | Extensões recomendadas do time |
+| `powers/installed.json` | Powers configurados |
+| `settings/mcp.template.json` | Base para o seu `mcp.json` |
+
+Se alguma pasta estiver vazia ou ausente, rode manualmente:
+
+```bash
+cd "C:\Users\<seu-usuário>\.kiro"
+git pull origin master
+```
+
+---
+
+## PASSO 3 — Configurar o mcp.json
 
 ```bash
 copy "C:\Users\<seu-usuário>\.kiro\settings\mcp.template.json" "C:\Users\<seu-usuário>\.kiro\settings\mcp.json"
@@ -91,7 +122,7 @@ Abra o `mcp.json` e preencha suas chaves nos campos necessários (os MCPs de Dra
 
 ---
 
-## PASSO 3 — Bloquear push acidental
+## PASSO 4 — Bloquear push acidental
 
 Para garantir que voce nao faca push por engano, execute:
 
@@ -104,7 +135,7 @@ git remote set-url --push origin no-push
 
 ---
 
-## PASSO 4 — Criar o script de sync (apenas pull)
+## PASSO 5 — Criar o script de sync (apenas pull)
 
 Crie a pasta e o script:
 
@@ -124,7 +155,7 @@ git pull --rebase origin master
 
 ---
 
-## PASSO 5 — Criar o hook de atualização automática
+## PASSO 6 — Criar o hook de atualização automática
 
 Crie a pasta se nao existir:
 ```bash
@@ -152,7 +183,7 @@ Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
 
 ---
 
-## PASSO 6 — Reiniciar o Kiro
+## PASSO 7 — Reiniciar o Kiro
 
 Feche e abra o Kiro. As configurações do time serão carregadas automaticamente.
 

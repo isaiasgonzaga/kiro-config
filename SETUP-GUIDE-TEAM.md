@@ -1,49 +1,49 @@
 # Guia de Setup do Kiro — Membros do Time
 
-Este guia configura o Kiro na sua maquina com as configurações padrão do time.
-Voce nao precisa (e nao deve) alterar o repositório — apenas recebe as atualizações do admin.
+Este guia configura o Kiro na sua maquina com as configuracoes padrao do time.
+Voce nao precisa (e nao deve) alterar o repositorio — apenas recebe as atualizacoes do admin.
 
 ---
 
-## Pré-requisitos — Antes de começar
+## Pre-requisitos — Antes de comecar
 
-Garanta que os itens abaixo estão instalados e funcionando antes de executar qualquer passo.
+Garanta que os itens abaixo estao instalados e funcionando antes de executar qualquer passo.
 
 ### 1. Kiro IDE
 Baixe e instale o Kiro em: https://kiro.dev
 
 ### 2. Git
-Necessário para clonar o repositório do time e receber atualizações automáticas.
+Necessario para clonar o repositorio do time e receber atualizacoes automaticas.
 
 - Download: https://git-scm.com/download/win
-- Após instalar, verifique: `git --version`
-- Configure sua identidade (obrigatório para o git funcionar):
+- Apos instalar, verifique: `git --version`
+- Configure sua identidade (obrigatorio para o git funcionar):
   ```bash
   git config --global user.email "seu-email@empresa.com"
   git config --global user.name "Seu Nome"
   ```
-- Configure o armazenamento de credenciais para não precisar digitar senha toda vez:
+- Configure o armazenamento de credenciais para nao precisar digitar senha toda vez:
   ```bash
   git config --global credential.helper manager
   ```
 
-> Se `git` não for reconhecido no terminal após a instalação, reinicie o terminal ou o Windows.
+> Se `git` nao for reconhecido no terminal apos a instalacao, adicione `C:\Program Files\Git\bin` ao PATH do sistema e reinicie o terminal.
 
 ### 3. Node.js
-Necessário para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing-calculator).
+Necessario para os MCPs que usam `npx` (drawio-aws, drawio-official, aws-pricing-calculator).
 
-- Download (versão LTS): https://nodejs.org
-- Após instalar, verifique:
+- Download (versao LTS): https://nodejs.org
+- Apos instalar, verifique:
   ```bash
   node -v
   npm -v
   ```
 
 ### 4. Python + uv (para MCPs com uvx)
-Necessário se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws-docs, etc.
+Necessario se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws-docs, etc.
 
 - Download Python: https://www.python.org/downloads/
-- Após instalar Python, instale o uv:
+- Apos instalar Python, instale o uv:
   ```bash
   pip install uv
   ```
@@ -52,9 +52,9 @@ Necessário se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws
   uvx --version
   ```
 
-### Checklist rápido
+### Checklist rapido
 
-| Item | Comando de verificação | Status esperado |
+| Item | Comando de verificacao | Status esperado |
 |------|------------------------|-----------------|
 | Git | `git --version` | `git version 2.x.x` |
 | Node.js | `node -v` | `v20.x.x` ou superior |
@@ -66,132 +66,157 @@ Necessário se quiser ativar MCPs como filesystem, git, fetch, brave-search, aws
 
 ---
 
-## PASSO 1 — Clonar as configurações do time
+## PASSO 1 — Clonar as configuracoes do time
 
-Abra o terminal e execute:
+O repositorio deve ser clonado em uma pasta temporaria — **nao diretamente no `.kiro`**, pois o Kiro ja cria essa pasta com arquivos proprios ao ser instalado.
 
 ```bash
-git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\Users\<seu-usuário>\.kiro"
+git clone https://github.com/isaiasgonzaga/kiro-config.git "C:\kiro-config-clone"
 ```
-
-> Substitua `<seu-usuário>` pelo seu nome de usuário do Windows.
-> Exemplo: `C:\Users\joao.silva\.kiro`
 
 ---
 
-## PASSO 2 — Verificar os arquivos recebidos do repositório
+## PASSO 2 — Copiar as configuracoes para o Kiro
 
-Após clonar, confirme que os seguintes arquivos e pastas estão presentes no seu `.kiro`:
+Copie os arquivos relevantes do clone para o diretorio do Kiro:
 
 ```bash
-dir "C:\Users\<seu-usuário>\.kiro\steering"
-dir "C:\Users\<seu-usuário>\.kiro\extensions"
-dir "C:\Users\<seu-usuário>\.kiro\powers"
-dir "C:\Users\<seu-usuário>\.kiro\settings"
+:: Criar pasta settings se nao existir
+mkdir "C:\Users\<seu-usuario>\.kiro\settings"
+
+:: mcp.json (template base — voce vai preencher as keys no proximo passo)
+copy "C:\kiro-config-clone\settings\mcp.template.json" "C:\Users\<seu-usuario>\.kiro\settings\mcp.json"
+
+:: Steering files (regras e comportamentos do agente)
+copy "C:\kiro-config-clone\steering\language.md" "C:\Users\<seu-usuario>\.kiro\steering\language.md"
+copy "C:\kiro-config-clone\steering\aws-calculator.md" "C:\Users\<seu-usuario>\.kiro\steering\aws-calculator.md"
+copy "C:\kiro-config-clone\steering\aws-diagrams.md" "C:\Users\<seu-usuario>\.kiro\steering\aws-diagrams.md"
+
+:: Extensions e Powers
+copy "C:\kiro-config-clone\extensions\extensions.json" "C:\Users\<seu-usuario>\.kiro\extensions\extensions.json"
+copy "C:\kiro-config-clone\powers\installed.json" "C:\Users\<seu-usuario>\.kiro\powers\installed.json"
 ```
 
-O que você deve encontrar:
+Confirme que os arquivos estao no lugar:
 
-| Pasta / Arquivo | O que faz |
-|-----------------|-----------|
-| `steering/language.md` | Kiro responde em português brasileiro |
+```bash
+dir "C:\Users\<seu-usuario>\.kiro\steering"
+dir "C:\Users\<seu-usuario>\.kiro\settings"
+```
+
+O que voce deve encontrar:
+
+| Arquivo | O que faz |
+|---------|-----------|
+| `steering/language.md` | Kiro responde em portugues brasileiro |
 | `steering/aws-calculator.md` | Fluxo guiado para estimativas AWS |
-| `steering/aws-diagrams.md` | Padrão de diagramas AWS do time |
-| `extensions/extensions.json` | Extensões recomendadas do time |
+| `steering/aws-diagrams.md` | Padrao de diagramas AWS do time |
+| `extensions/extensions.json` | Extensoes recomendadas do time |
 | `powers/installed.json` | Powers configurados |
-| `settings/mcp.template.json` | Base para o seu `mcp.json` |
-
-Se alguma pasta estiver vazia ou ausente, rode manualmente:
-
-```bash
-cd "C:\Users\<seu-usuário>\.kiro"
-git pull origin master
-```
+| `settings/mcp.json` | Configuracao dos MCPs (nao vai para o git) |
 
 ---
 
 ## PASSO 3 — Configurar o mcp.json
 
-```bash
-copy "C:\Users\<seu-usuário>\.kiro\settings\mcp.template.json" "C:\Users\<seu-usuário>\.kiro\settings\mcp.json"
-```
+Abra o arquivo `C:\Users\<seu-usuario>\.kiro\settings\mcp.json` e preencha suas chaves nos campos necessarios.
 
-O arquivo `mcp.json` esta no `.gitignore` — suas credenciais ficam **apenas na sua maquina**, nao vao para o repositório.
+Os MCPs de Draw.io e AWS Calculator **nao precisam de chave** — ja funcionam direto apos o setup.
 
-Abra o `mcp.json` e preencha suas chaves nos campos necessários (os MCPs de Draw.io e AWS Calculator nao precisam de chave — ja funcionam direto).
+O arquivo `mcp.json` esta no `.gitignore` — suas credenciais ficam **apenas na sua maquina**, nao vao para o repositorio.
 
 ---
 
-## PASSO 4 — Bloquear push acidental
+## PASSO 4 — Bloquear alteracoes acidentais no repositorio
 
-Para garantir que voce nao faca push por engano, execute:
+Como membro do time, voce nao deve modificar o repositorio de configuracoes. Execute os comandos abaixo para proteger contra alteracoes acidentais:
 
 ```bash
-cd "C:\Users\<seu-usuário>\.kiro"
+cd "C:\kiro-config-clone"
+
+:: Bloquear push
 git remote set-url --push origin no-push
 ```
 
-> Isso faz com que qualquer tentativa de `git push` falhe com "no-push", protegendo o repositório do time.
+> Qualquer tentativa de `git push` vai falhar com "no-push", protegendo o repositorio do time.
+> Apenas o admin (Isaias Santos) tem permissao de alterar as configuracoes.
 
 ---
 
-## PASSO 5 — Criar o script de sync (apenas pull)
+## PASSO 5 — Configurar o sync automatico (apenas pull)
 
-Crie a pasta e o script:
+O sync baixa atualizacoes do admin automaticamente ao final de cada sessao do Kiro. Voce **nao faz commit nem push** — apenas recebe.
+
+### 5.1 — Criar o script de sync
 
 ```bash
 mkdir C:\kiro-sync
 ```
 
-Crie o arquivo `C:\kiro-sync\sync.bat` com o seguinte conteúdo:
+Crie o arquivo `C:\kiro-sync\sync.bat` com o seguinte conteudo:
 
 ```bat
 @echo off
-cd /d "C:\Users\<seu-usuário>\.kiro"
-git pull --rebase origin master
+cd /d "C:\Users\<seu-usuario>\.kiro"
+"C:\Program Files\Git\bin\git.exe" pull --rebase origin master
 ```
 
-> Este script apenas **recebe** atualizações do admin. Nao faz commit nem push.
+> Use o caminho completo do git (`C:\Program Files\Git\bin\git.exe`) para garantir que o script funcione mesmo quando o git nao esta no PATH do sistema.
+> O script precisa estar em `C:\kiro-sync\` — caminho SEM ESPACOS — para o hook funcionar corretamente.
 
----
+### 5.2 — Inicializar o Git no diretorio do Kiro
 
-## PASSO 6 — Criar o hook de atualização automática
+Para que o sync funcione, o `.kiro` precisa estar conectado ao repositorio remoto em modo somente leitura:
 
-Crie a pasta se nao existir:
 ```bash
-mkdir "C:\Users\<seu-usuário>\.kiro\.kiro\hooks"
+cd "C:\Users\<seu-usuario>\.kiro"
+
+:: Inicializar o repositorio
+git init
+
+:: Conectar ao remote
+git remote add origin https://github.com/isaiasgonzaga/kiro-config.git
+
+:: Baixar o historico e configurar o tracking
+git fetch origin master
+git update-ref refs/heads/master origin/master
+git symbolic-ref HEAD refs/heads/master
+git branch --set-upstream-to=origin/master master
+git reset HEAD
+
+:: Bloquear push (protecao adicional)
+git remote set-url --push origin no-push
 ```
 
-Crie o arquivo `sync-kiro-config.kiro.hook` dentro dessa pasta:
+### 5.3 — Testar o sync manualmente
 
-```json
-{
-  "enabled": true,
-  "name": "Sync Kiro Config",
-  "description": "Recebe atualizações de configuração do time automaticamente",
-  "version": "1",
-  "when": {
-    "type": "agentStop"
-  },
-  "then": {
-    "type": "runCommand",
-    "command": "cmd /c \"C:\\kiro-sync\\sync.bat\"",
-    "timeout": 30
-  }
-}
+```bash
+cmd /c "C:\kiro-sync\sync.bat"
 ```
+
+A saida esperada e algo como `Already up to date.` ou uma lista de arquivos atualizados.
+
+### 5.4 — Criar o hook de atualizacao automatica
+
+No Kiro, abra uma nova sessao e execute o seguinte prompt:
+
+```
+Crie um hook com trigger Stop, comando: cmd /c "C:\kiro-sync\sync.bat", timeout 30, nome "Sync Kiro Config"
+```
+
+O Kiro vai criar o arquivo `.kiro/hooks/sync-kiro-config.json` automaticamente no workspace ativo.
 
 ---
 
-## PASSO 7 — Reiniciar o Kiro
+## PASSO 6 — Reiniciar o Kiro
 
-Feche e abra o Kiro. As configurações do time serão carregadas automaticamente.
+Feche e abra o Kiro. As configuracoes do time serao carregadas automaticamente.
 
 ---
 
-## Como receber atualizações do admin
+## Como receber atualizacoes do admin
 
-Sempre que o admin atualizar as configurações, seu Kiro vai sincronizar automaticamente ao final de cada execução do agente.
+Sempre que o admin atualizar as configuracoes, seu Kiro vai sincronizar automaticamente ao final de cada execucao do agente.
 
 Para atualizar manualmente a qualquer momento:
 
@@ -201,7 +226,7 @@ cmd /c "C:\kiro-sync\sync.bat"
 
 ---
 
-## MCPs disponíveis apos o setup
+## MCPs disponiveis apos o setup
 
 | MCP | Status | O que faz |
 |-----|--------|-----------|
@@ -212,18 +237,25 @@ cmd /c "C:\kiro-sync\sync.bat"
 
 ---
 
-## Resolução de problemas
+## Resolucao de problemas
 
-**Erro ao fazer pull: "divergent branches"**
+**Sync nao baixa atualizacoes**
+- Confirme que o `.kiro` esta conectado ao remote: `cd "C:\Users\<seu-usuario>\.kiro" && git remote -v`
+- Teste manualmente: `cmd /c "C:\kiro-sync\sync.bat"`
+
+**Erro "divergent branches" ao fazer pull**
 ```bash
-cd "C:\Users\<seu-usuário>\.kiro"
-git fetch origin
-git reset --hard origin/master
+cd "C:\Users\<seu-usuario>\.kiro"
+"C:\Program Files\Git\bin\git.exe" fetch origin
+"C:\Program Files\Git\bin\git.exe" reset --hard origin/master
 ```
 
 **MCPs nao aparecem**
 - Verifique se Node.js esta instalado: `node -v`
 - Reconecte pelo painel do Kiro (View > MCP Servers)
 
-**Quero sugerir uma mudança nas configurações**
-- Fale com o admin (Isaias Santos) — ele faz a alteração e voce recebe automaticamente no proximo sync.
+**git nao reconhecido no sync.bat**
+- Use o caminho completo: `"C:\Program Files\Git\bin\git.exe"` dentro do bat
+
+**Quero sugerir uma mudanca nas configuracoes**
+- Fale com o admin (Isaias Santos) — ele faz a alteracao e voce recebe automaticamente no proximo sync.
